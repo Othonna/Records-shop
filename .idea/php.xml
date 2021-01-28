@@ -111,6 +111,8 @@
       <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle-services" />
       <path value="$PROJECT_DIR$/vendor/ricbra/php-discogs-api" />
       <path value="$PROJECT_DIR$/vendor/react/promise" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
+      <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
