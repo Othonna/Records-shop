@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <br>  <H4 class="text-center">Register into the Best Records Shop</H4>
+    <hr>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card mt-4">
+                    <header class="card-header">
+                        <a href="" class="float-right btn btn-outline-primary mt-1">Log in</a>
+                        <h4 class="card-title mt-2">Sign up</h4>
+                    </header>
+                    <article class="card-body">
+                        {{ form(form) }}
+                        <div class="form-group">
+
+                        </div>
+                        <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>
+                    </article>
+                    <div class="border-top card-body text-center">Have an account? <a href="">Log In</a></div>
+                </div>
+            </div>
+        </div>
+     <br><br>
+    </div>
+
+
+{% endblock %}
