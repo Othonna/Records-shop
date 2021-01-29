@@ -3,5 +3,11 @@
 {% block title %}Hello DiscogsController!{% endblock %}
 
 {% block body %}
+    {{ dump(style) }}
+    {{ dump(image) }}
+    {{ dump(profile) }}
 
+    <h1>{{ name }}</h1>
+    <h2>{{ release }}</h2>
+    <h3>{{ price }}</h3>
 {% endblock %}
