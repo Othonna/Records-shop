@@ -3,7 +3,7 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <br>  <H4 class="text-center">Register into the Best Records Shop</H4>
+    <br> <a href="{{ path('home') }}"><H4 class="text-center">Return into the Best Records Shop</H4></a>
     <hr>
     <div class="container">
         <div class="row justify-content-center">
@@ -14,10 +14,26 @@
                         <h4 class="card-title mt-2">Sign up</h4>
                     </header>
                     <article class="card-body">
-                        {{ form(form) }}
-                        <div class="form-group">
+                        {{ form_start(form) }}
+                            <div class="form-row">
+                                <div class="col form-group">
+                                    {{ form_row(form.firstname ) }}
+                                </div>
+                                <div class="col form-group">
+                                    {{ form_row(form.lastname ) }}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(form.email, {'attr': {'placeholder': 'exemple@email.com'} } ) }}
+                            </div>
+                            <div class="form-group">
+                                {{ form_row(form.password ) }}
+                            </div>
 
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block">Send</button>
                         </div>
+                        {{ form_end(form) }}
                         <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>
                     </article>
                     <div class="border-top card-body text-center">Have an account? <a href="">Log In</a></div>

@@ -44,11 +44,6 @@ class User implements UserInterface
      */
     private $lastname;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    private $submit;
-
     public function getId(): ?int
     {
         return $this->id;
@@ -150,5 +145,4 @@ class User implements UserInterface
 
         return $this;
     }
-
 }

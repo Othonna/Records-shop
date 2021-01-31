@@ -103,16 +103,11 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
       <path value="$PROJECT_DIR$/vendor/doctrine/persistence" />
       <path value="$PROJECT_DIR$/vendor/doctrine/collections" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/ringphp" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/command" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/oauth-subscriber" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/streams" />
-      <path value="$PROJECT_DIR$/vendor/guzzlehttp/guzzle-services" />
-      <path value="$PROJECT_DIR$/vendor/ricbra/php-discogs-api" />
-      <path value="$PROJECT_DIR$/vendor/react/promise" />
       <path value="$PROJECT_DIR$/vendor/doctrine/data-fixtures" />
       <path value="$PROJECT_DIR$/vendor/doctrine/doctrine-fixtures-bundle" />
+      <path value="$PROJECT_DIR$/vendor/symfony/polyfill-uuid" />
+      <path value="$PROJECT_DIR$/vendor/symfony/uid" />
+      <path value="$PROJECT_DIR$/vendor/easycorp/easyadmin-bundle" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.2" />
