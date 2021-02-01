@@ -2,19 +2,39 @@
 
 namespace App\Controller;
 
+use App\Services\Cart;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class CartController extends AbstractController
 {
     /**
-     * @Route("/cart", name="cart")
+     * @Route("/mon-panier", name="cart")
      */
-    public function index(): Response
+    public function index(Cart $cart)
     {
-        return $this->render('cart/index.html.twig', [
-            'controller_name' => 'CartController',
-        ]);
+        dd($cart->get());
+        return $this->render('cart/index.html.twig');
+    }
+
+    /**
+     * @Route("/cart/add/{id}", name="add_to_cart")
+     */
+    public function add(Cart $cart, $id)
+    {
+
+        $cart->add($id);
+        // dd($id);
+        return $this->redirectToRoute( 'cart' );
+    }
+    /**
+     * @Route("/cart/remove", name="remove_my_cart")
+     */
+    public function remove(Cart $cart)
+    {
+
+        $cart->remove();
+        // dd($id);
+        return $this->redirectToRoute( 'product' );
     }
 }

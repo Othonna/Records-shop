@@ -83,7 +83,7 @@
                                         <p class="btn btn-danger btn-block">{{ product.price }} &euro;</p>
                                     </div>
                                     <div class="col">
-                                        <a href="#" class="btn btn-success btn-block">Ajouter au panier</a>
+                                        <a href="{{ path('add_to_cart', {'id' : product.id}) }}" class="btn btn-success btn-block">Ajouter au panier</a>
                                     </div>
                                 </div>
                             </div>
