@@ -19,7 +19,38 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
+    public function filterDate()
+    {
+        $qb = $this->createQueryBuilder('p')
+            // select = from product orderby
+                   ->orderBy('p.release_at', 'DESC')
+                   ->setMaxResults(4)
+                   ->setFirstResult(0);
+        //dump($qb->getQuery()->getResult());
+        return $qb->getQuery()->getResult();
+    }
 
+    public function filterFavorite($style = 'release')
+    {
+        $qb = $this->createQueryBuilder('p')
+                   ->andWhere('p.style = :style')
+                   ->setParameter('style', $style)
+                   ->setMaxResults(1)
+                   ->setFirstResult(rand(20, 32));
+        //dump($qb->getQuery()->getResult());
+        return $qb->getQuery()->getResult();
+    }
+
+    public function randView(?int $limit = 6): ?iterable
+    {
+        $count = $this->count([]);
+
+        $qb = $this->createQueryBuilder('p')
+                   ->setMaxResults($limit)
+                   ->setFirstResult(rand(0, $count -1));
+        dump($qb->getQuery()->getResult());
+        return $qb->getQuery()->getResult();
+    }
 
     // /**
     //  * @return Product[] Returns an array of Product objects
