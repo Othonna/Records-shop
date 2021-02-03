@@ -11,6 +11,8 @@ use App\Entity\Product;
 use App\Repository\ArtistRepository;
 use App\Repository\CategorieRepository;
 use App\Repository\ProductRepository;
+use App\Services\Cart;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,6 +21,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ProductController extends AbstractController
 {
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
 
     /**
      * @Route("/product", name="product")
@@ -43,5 +51,29 @@ class ProductController extends AbstractController
     }
 
 
+    /**
+     * @Route("/product/{id}", name="product_show")
+     */
+
+    public function show(ProductRepository $productRepository, CategorieRepository $categorieRepository, ArtistRepository $artistRepository,$id, Cart $cart)
+    {
+        $artistRepository = $this->getDoctrine()->getRepository(Artist::class);
+        $products = $this->getDoctrine()->getRepository(Product::class)->findOneById($id);
+        $artists = $artistRepository->findAll();
+        $categories = $categorieRepository->findAll();
+        // $carte = $cart->getFull();
+        // redirection au cas ou il n'y a pas de produit
+        if (!$products) {
+            return $this->redirectToRoute('product');
+        }
+        // dd($product);
+        // dd($carte);
+        return $this->render('product/show.html.twig', [
+            'product' => $products,
+            'artists' => $artists,
+            'categories' => $categories,
+           // 'cart' => $carte
+        ]);
+    }
 
 }

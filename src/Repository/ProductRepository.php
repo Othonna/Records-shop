@@ -47,7 +47,7 @@ class ProductRepository extends ServiceEntityRepository
 
         $qb = $this->createQueryBuilder('p')
                    ->setMaxResults($limit)
-                   ->setFirstResult(rand(0, $count -1));
+                   ->setFirstResult(rand(0, $count - $limit));
         dump($qb->getQuery()->getResult());
         return $qb->getQuery()->getResult();
     }

@@ -3,14 +3,14 @@
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-    <br> <a href="{{ path('home') }}"><H4 class="text-center">Return into the Best Records Shop</H4></a>
+    <br> <a href="{{ path('home') }}"><H4 class="text-center">Back into the Best Records Shop</H4></a>
     <hr>
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
                 <div class="card mt-4">
                     <header class="card-header">
-                        <a href="" class="float-right btn btn-outline-primary mt-1">Log in</a>
+                        <a href="{{ path('app_login') }}" class="float-right btn btn-outline-primary mt-1">Log in</a>
                         <h4 class="card-title mt-2">Sign up</h4>
                     </header>
                     <article class="card-body">
@@ -36,7 +36,7 @@
                         {{ form_end(form) }}
                         <small class="text-muted">By clicking the 'Sign Up' button, you confirm that you accept our <br> Terms of use and Privacy Policy.</small>
                     </article>
-                    <div class="border-top card-body text-center">Have an account? <a href="">Log In</a></div>
+                    <div class="border-top card-body text-center">Have an account? <a href="{{ path('app_login') }}">Log In</a></div>
                 </div>
             </div>
         </div>

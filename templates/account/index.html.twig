@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}My account Records Shop{% endblock %}
+
+{% block body %}
+    {{ include ('/subTemplates/header.html') }}
+<h1>My account</h1>
+   <h4>Welcome {{ app.user.firstname}}  in your account</h4>
+  {#{{ dump(app.user) }} #}
+   - Modifier mon mot de passe <br>
+   - Ajouter mon adresse <br>
+   - Mes commandes
+{% endblock %}

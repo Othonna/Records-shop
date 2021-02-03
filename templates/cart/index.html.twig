@@ -14,80 +14,72 @@
         <div class="row">
             <div class="col-12">
                 <div class="table-responsive">
+                    {% if cart|length > 0 %}
                     <table class="table table-striped">
-                        <thead>
                         <tr>
-                            <th scope="col"> </th>
-                            <th scope="col">Produit</th>
-                            <th scope="col">Disponibilité</th>
-                            <th scope="col" class="text-center">Quantité</th>
-                            <th scope="col" class="text-right">Prix</th>
-                            <th> </th>
+                            <th scope="col"></th>
+                            <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Total</th>
+                            <th scope="col"></th>
                         </tr>
-                        </thead>
                         <tbody>
-                        <tr>
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <td>Dada</td>
-                            <td>En stock</td>
-                            <td><input class="form-control" type="text" value="1" /></td>
-                            <td class="text-right">124,90 €</td>
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                        </tr>
-                        <tr>
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <td>Toto</td>
-                            <td>En stock</td>
-                            <td><input class="form-control" type="text" value="1" /></td>
-                            <td class="text-right">33,90 €</td>
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                        </tr>
-                        <tr>
-                            <td><img src="https://dummyimage.com/50x50/55595c/fff" /> </td>
-                            <td>Titi</td>
-                            <td>En stock</td>
-                            <td><input class="form-control" type="text" value="1" /></td>
-                            <td class="text-right">70,00 €</td>
-                            <td class="text-right"><button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i> </button> </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Sous-Total</td>
-                            <td class="text-right">255,90 €</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td>Frais de port</td>
-                            <td class="text-right">6,90 €</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><strong>Total</strong></td>
-                            <td class="text-right"><strong>346,90 €</strong></td>
-                        </tr>
+                        {% set total = null %}
+                        {% for product in cart %}
+                            <tr>
+                                <td><img src="{{ product.product.image }}" height="100px"></td>
+                                <th scope="row">{{ product.product.name }}</th>
+                                <td>
+                                   <a href="{{ path('decrease_to_cart', { 'id' : product.product.id }) }}"><button type="button" class="btn"><i class="fa fa-minus"></i></button></a>
+                                    {{ product.quantity }}
+                                    <a href="{{ path('add_to_cart', { 'id' : product.product.id}) }}"><button type="button" class="btn"><i class="fa fa-plus"></i></button></a>
+                                </td>
+                                <td>{{ (product.product.price)|number_format(2, ',', '.') }} €</td>
+                                <td>{{ (product.product.price * product.quantity)|number_format(2, ',', '.') }} €</td>
+                                <td class="text-right">
+                                    <a href="{{ path('delete_to_cart', { 'id' : product.product.id }) }}">
+                                       <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% set total = total + (product.product.price * product.quantity) %}
+                        {% endfor %}
                         </tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Nombre de produits</strong></td>
+                            <td class="text-right"><strong>{{ cart|length }}</strong></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td><strong>Total de mon panier</strong></td>
+                            <td class="text-right"><strong>{{ (total)|number_format(2, ',', '.') }} €</strong></td>
+                            <td></td>
+                        </tr>
                     </table>
                 </div>
             </div>
             <div class="col mb-2">
                 <div class="row">
                     <div class="col-sm-12  col-md-6">
-                        <button class="btn btn-block btn-light">Continuer vos achats</button>
+                        <button class="btn btn-block btn-primary">Continuer vos achats</button>
                     </div>
                     <div class="col-sm-12 col-md-6 text-right">
                         <button class="btn btn-lg btn-block btn-success text-uppercase">Commander</button>
                     </div>
                 </div>
             </div>
+            {% else %}
+               <hr>
+                <p class="text-center"><b>Votre panier est vide</b></p>
+                <br><br><br><br><br><br><br><br><br><br>
+            {% endif %}
         </div>
     </div>
 

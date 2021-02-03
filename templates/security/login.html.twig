@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    {% if app.user %}
+        <div class="mb-3">
+            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+    {% endif %}
+    <div class="container-fluid">
+        <div class="row main-content bg-success text-center">
+            <div class="col-md-4 text-center company__info">
+                <span class="company__logo"><h2><span class="fa fa-headphones"></span></h2></span>
+                <h4 class="company_title">Records Shop</h4>
+            </div>
+            <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+                <div class="container-fluid">
+                    <div class="mt-4 text-center log">
+                        <h2>Log In</h2>
+                    </div>
+                    <div class="row">
+                        <div control="" class="form-group text-center form-my">
+                            <div class="row">
+                                <input type="email" name="email" id="inputEmail" value="{{ last_username }}" class="form__input" placeholder="Username" required autofocus>
+                                <input type="password" name="password" id="inputPassword" class="form__input" placeholder="Password" required>
+                                <input type="checkbox" name="remember_me" id="remember_me" class="ml-2 mt-1">
+                                <label class="ml-1 mb-4" for="remember_me">Remember Me!</label>
+                            </div>
+                            <input type="submit" value="Submit" class="btn-my">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="text-center">
+                        <p>Don't have an account? <a href="{{ path('register') }}">Register Here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}">
+
+    {#
+        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+        See https://symfony.com/doc/current/security/remember_me.html
+
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" name="_remember_me"> Remember me
+            </label>
+        </div>
+    #}
+</form>
+{% endblock %}
+
+

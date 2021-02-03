@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ include ('/subTemplates/header.html') }}
+
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">Produit</h1>
+            <p class="lead text-muted mb-0">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Porro commodi aliquam veniam fuga suscipit itaque labore natus accusamus numquam, perferendis in? Incidunt libero dignissimos unde fuga voluptatem omnis accusamus delectus.</p>
+        </div>
+    </section>
+
+    <div class="d-flex justify-content-center">
+    <div class="col-12 col-lg-6 add_to_cart_block">
+        <div class="card bg-light mb-3">
+            <div class="card-body text-center">
+                <div class="card-body text-center">
+                    <img class="picture card-img-top img-fluid border-0" src="{{ product.image }}" alt="Card image cap">
+                    <h4 class="card-title fs-6 mt-4"><a href="{{ path('product_show', {'id' : product.id}) }}" title="View Product">{{ product.name }}</a></h4>
+                </div>
+                <p class="price">{{ product.price }}&euro;</p>
+                <p class="price_discounted"></p>
+
+                <form method="get" action="cart.html">
+                    <div class="form-group">
+                        <label for="colors">Style</label>
+                        <select class="custom-select" id="colors">
+                            <option selected>Choisir</option>
+                            {% for categorie in categories %}
+                            <option value="1">{{ categorie.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Quantité :</label>
+                        <div class="input-group mb-3 d-flex justify-content-center">
+                            <div class="input-group-prepend">
+                                <button type="button" class="quantity-left-minus btn btn-danger btn-number"  data-type="minus" data-field="">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                            </div>
+                            <input type="text" id="quantity" name="quantity" min="1" max="100" value="1">
+                            <div class="input-group-append">
+                                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-type="plus" data-field="">
+                                    <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="{{ path('add_to_cart', {'id' : product.id}) }}" class="btn btn-success btn-lg text-uppercase">
+                        <i class="fa fa-shopping-cart"></i> Ajouter au panier
+                    </a>
+                </form>
+                <div class="product_rassurance mt-4">
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><i class="fa fa-truck fa-2x"></i><br/>Livraison rapide</li>
+                        <li class="list-inline-item"><i class="fa fa-credit-card fa-2x"></i><br/>Paiement sécurisé</li>
+                        <li class="list-inline-item"><i class="fa fa-phone fa-2x"></i><br/>+33 1 22 54 65 60</li>
+                    </ul>
+                </div>
+                <div class="reviews_product p-3 mb-2 ">
+                    3 avis
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    (4/5)
+                    <a class="pull-right" href="#reviews">Voir tous les avis</a>
+                </div>
+                <div class="datasheet p-3 mb-2 bg-info text-white">
+                    <a href="" class="text-white"><i class="fa fa-file-text"></i> Télécharger la fiche produit</a>
+                </div>
+            </div>
+          </div>
+          </div>
+    </div>
+
+
+    {{ include ('/subTemplates/footer.html') }}
+
+{% endblock  %}
